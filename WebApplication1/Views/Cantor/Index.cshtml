@@ -1,0 +1,35 @@
+﻿@model IEnumerable<WebApplication1.Models.Cantor>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Cantores</h1>
+
+<p>
+    <a asp-action="Create">Cadastrar novo cantor</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-controller="Musica" asp-action="Index" asp-route-id="@item.CantorID">@Html.DisplayFor(modelItem => item.Nome)</a>
+                </td>
+                <td>
+                    <a asp-action="Create" asp-route-id="@item.CantorID">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CantorID" onclick="return confirm('Deseja realmente excluir este cantor? Isso apagará TODAS as musicas!')">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

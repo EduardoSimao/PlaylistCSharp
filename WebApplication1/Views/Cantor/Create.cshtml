@@ -1,0 +1,94 @@
+﻿@model WebApplication1.Models.Cantor
+
+@{
+    ViewData["Title"] = "Create";
+
+    var id = Model.CantorID;
+
+}
+
+
+<script src="~/js/cantor.js"></script>
+
+
+
+<body onload="CreateEdit(@id)">
+    @*<div id="result4"></div>*@
+    @*<div class="form-group col-md-8">
+    <label class="control-label">Selecione Foto</label>
+    <input id="input-id" type="file" asp-for="imgCantor" class="file" data-preview-file-type="text">
+     
+    </div>*@
+</body>
+
+@*@{
+    if (Model.imgCantor != null)
+    {
+        var base64 = Convert.ToBase64String(Model.imgCantor);
+        var imgSrc = String.Format("data:image/png;base64,{0}", base64);
+
+        <script>
+            $("#input-id").fileinput({
+                'showUpload': false,
+                'showPreview': true,
+                'initialPreview': [
+                    '<img src="@imgSrc" style="width: 200px; height: 200px;"/>'
+                ]
+            });
+
+        </script>
+    }
+    else
+    {
+        <script>
+            $("#input-id").fileinput({
+                'showUpload': false,
+                'showPreview': true
+            });
+
+        </script>
+    }
+
+
+}*@
+
+@*@section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@
+
+
+@*<h4>Cantor</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="CantorID" />
+                <div class="form-group col-md-8">
+                    <label asp-for="Nome" class="control-label"></label>
+                    <input asp-for="Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-8">
+                    <input asp-for="imgCantor" type="file" class="form-control-file" />
+                </div>
+                <div class="form-group col-md-8">
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+        @{
+            if (Model.imgCantor != null)
+            {
+                var base64 = Convert.ToBase64String(Model.imgCantor);
+                var imgSrc = String.Format("data:image/png;base64,{0}", base64);
+                <div class="form-group">
+                    <img src="@imgSrc" class="img-thumbnail" style="width: 200px; height: 200px;">
+                </div>
+            }
+        }
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@

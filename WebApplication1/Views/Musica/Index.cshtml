@@ -1,0 +1,47 @@
+﻿@model List<WebApplication1.Models.Cantor>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>@Model[0].Nome </h1>
+<h3>Todas as Musicas </h3>
+
+<p>
+    <a asp-action="Create" asp-route-idCantor="@Model[0].CantorID">Cadastar Nova Musica</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Musica
+            </th>
+            <th>
+                Cantor
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            @foreach (var musica in item.Musicas)
+            {
+                <tr>
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => musica.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        <a asp-action="Create" asp-route-id="@musica.MusicaID" asp-route-idCantor="@Model[0].CantorID">Edit</a> |
+                        <a asp-action="Delete" asp-route-idMusica="@musica.MusicaID" onclick="return confirm('Deseja realmente exlcuir esta musica?')">Delete</a>
+                    </td>
+                </tr>
+            }
+
+        }
+    </tbody>
+</table>
